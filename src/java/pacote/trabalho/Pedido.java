@@ -11,6 +11,9 @@ public class Pedido {
         this.status = status;
         this.valor = valor;
         this.itens = itens;
+        itens.add(new Item("Hamburgão", 3.50));
+        itens.add(new Item("Batata-Frita", 1.75));
+        itens.add(new Item("Coca-Cola 500ml", 3.00));
     }
 
     public Pedido() {

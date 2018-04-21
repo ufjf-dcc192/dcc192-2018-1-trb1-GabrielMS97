@@ -10,6 +10,10 @@ public class Mesa {
         this.numero = numero;
         this.pedidos = pedidos;
     }
+    
+    public Mesa(Integer numero) {
+        this.numero = numero;
+    }
 
     public Mesa() {
     }
