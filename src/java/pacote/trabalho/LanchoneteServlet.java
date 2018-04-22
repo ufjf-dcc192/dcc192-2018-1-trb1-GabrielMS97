@@ -17,9 +17,9 @@ public class LanchoneteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if ("/mesa.html".equals(request.getServletPath())) {
             listarMesas(request, response);
-        } else if ("excluirMesa.html".equals(request.getServletPath())) {
+        } else if ("/excluirMesa.html".equals(request.getServletPath())) {
             excluirMesas(request, response);
-        } else if ("novaMesa.html".equals(request.getServletPath())) {
+        } else if ("/novaMesa.html".equals(request.getServletPath())) {
             criarMesas(request, response);
         }
     }
