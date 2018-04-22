@@ -6,7 +6,7 @@ import java.util.List;
 public class ListaMesas {
 
     private static List<Mesa> mesas;
-    private static int i;
+    private static int i = 0;
 
     public static List<Mesa> getInstance() {
         if (mesas == null) {
