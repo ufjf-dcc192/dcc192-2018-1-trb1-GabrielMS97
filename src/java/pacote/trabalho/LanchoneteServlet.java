@@ -10,14 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html", "/mesa.html"})
+@WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html", "/mesa.html", "/excluirMesa.html", "/novaMesa.html"})
 public class LanchoneteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if ("/mesa.html".equals(request.getServletPath())) {
             listarMesas(request, response);
+        } else if ("excluirMesa.html".equals(request.getServletPath())) {
+            excluirMesas(request, response);
+        } else if ("novaMesa.html".equals(request.getServletPath())) {
+            criarMesas(request, response);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String numero = request.getParameter("numero");
+        Mesa novaMesa = new Mesa(Integer.parseInt(numero));
+        ListaMesas.getInstance().add(novaMesa);
+        response.sendRedirect("mesa.html");
     }
 
     private void listarMesas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,5 +38,18 @@ public class LanchoneteServlet extends HttpServlet {
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-listarMesas.jsp");
         despachante.forward(request, response);
     }
-    
+
+    private void excluirMesas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int linha = Integer.parseInt(request.getParameter("linha"));
+        ListaMesas.getInstance().remove(linha);
+        response.sendRedirect("mesa.html");
+    }
+
+    private void criarMesas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Mesa> mesas = ListaMesas.getInstance();
+        request.setAttribute("mesas", mesas);
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-novaMesa.jsp");
+        despachante.forward(request, response);
+    }
+
 }

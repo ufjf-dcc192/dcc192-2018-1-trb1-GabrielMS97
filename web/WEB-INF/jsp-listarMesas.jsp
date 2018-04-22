@@ -27,6 +27,6 @@
                 </tr>
             </tfoot>
         </table>
-            <p><a href="index.html">Voltar ao início</a></p>
+        <p><a href="index.html">Voltar ao início</a></p>
     </body>
 </html>
