@@ -1,19 +1,19 @@
 package pacote.trabalho;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
+    Integer numPedido;
     Boolean status;
     Double valor;
     List<Item> itens;
 
-    public Pedido(Boolean status, Double valor, List<Item> itens) {
+    public Pedido(Integer numPedido ,Boolean status) {
+        this.numPedido = numPedido;
         this.status = status;
-        this.valor = valor;
-        this.itens = itens;
-        itens.add(new Item("Hamburgão", 3.50));
-        itens.add(new Item("Batata-Frita", 1.75));
-        itens.add(new Item("Coca-Cola 500ml", 3.00));
+        this.valor = 0.0;
+        this.itens = new ArrayList<>();
     }
 
     public Pedido() {
@@ -43,5 +43,11 @@ public class Pedido {
         this.itens = itens;
     }
     
-    
+    public Integer getNumPedido() {
+        return numPedido;
+    }
+
+    public void setNumPedido(Integer numPedido) {
+        this.numPedido = numPedido;
+    }
 }

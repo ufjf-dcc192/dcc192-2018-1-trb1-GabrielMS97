@@ -16,7 +16,7 @@
                         Mesa mesa = ListaMesas.getInstance().get(i);
                 %>  
                 <tr>
-                    <td><a href="">Mesa <%=mesa.getNumero()%></a></td>
+                    <td><a href="listarPedidos.html?numeroMesa=<%=mesa.getNumero()%>">Mesa <%=mesa.getNumero()%></a></td>
                     <td><a href="excluirMesa.html?linha=<%=i%>">Excluir</a></td>
                 </tr>
                 <%}%>

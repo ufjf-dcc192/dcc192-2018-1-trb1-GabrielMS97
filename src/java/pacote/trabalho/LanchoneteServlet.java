@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html", "/mesa.html", "/excluirMesa.html", "/novaMesa.html"})
+@WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html", "/mesa.html", "/excluirMesa.html", "/novaMesa.html", "/listarPedidos.html"})
 public class LanchoneteServlet extends HttpServlet {
 
     @Override
@@ -21,6 +21,8 @@ public class LanchoneteServlet extends HttpServlet {
             excluirMesas(request, response);
         } else if ("/novaMesa.html".equals(request.getServletPath())) {
             criarMesas(request, response);
+        } else if ("/listarPedidos.html".equals(request.getServletPath())) {
+            listarPedidos(request, response);
         }
     }
 
@@ -49,6 +51,17 @@ public class LanchoneteServlet extends HttpServlet {
         List<Mesa> mesas = ListaMesas.getInstance();
         request.setAttribute("mesas", mesas);
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-novaMesa.jsp");
+        despachante.forward(request, response);
+    }
+    
+    private void listarPedidos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int numeroMesa = Integer.parseInt(request.getParameter("numeroMesa"));
+        request.setAttribute("numeroMesa", numeroMesa);
+        numeroMesa--;
+        List<Mesa> mesa = ListaMesas.getInstance();
+        List<Pedido> pedidos = mesa.get(numeroMesa).getPedidos();
+        request.setAttribute("pedidos", pedidos);
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-listarPedidos.jsp");
         despachante.forward(request, response);
     }
 

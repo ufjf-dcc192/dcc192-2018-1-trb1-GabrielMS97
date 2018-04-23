@@ -1,18 +1,17 @@
 package pacote.trabalho;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mesa {
     Integer numero;
     List<Pedido> pedidos;
-
-    public Mesa(Integer numero, List<Pedido> pedidos) {
-        this.numero = numero;
-        this.pedidos = pedidos;
-    }
     
     public Mesa(Integer numero) {
         this.numero = numero;
+        this.pedidos = new ArrayList<>();
+        Pedido ped = new Pedido(0, true);
+        pedidos.add(ped);
     }
 
     public Mesa() {

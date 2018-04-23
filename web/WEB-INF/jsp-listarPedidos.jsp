@@ -9,8 +9,8 @@
         <h1>Pedidos</h1>
         <table border="2">
             <tr>
+                <th>Número do pedido</th>
                 <th>Valor deste pedido</th>
-                <th>Lista de itens</th>
                 <th>Status do pedido</th>
             </tr>
             <td><a href=""></a></td>
