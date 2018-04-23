@@ -12,10 +12,16 @@
                 <th>Número do pedido</th>
                 <th>Valor deste pedido</th>
                 <th>Status do pedido</th>
+                <th>Lista de Itens</th>
             </tr>
-            <td><a href=""></a></td>
-            <td><a href=""></a></td>
-            <td><a href=""></a></td>
+
+            <tr>
+                <td><a>Pedido </a></td>
+                <td><a>R$ </a></td>
+                <td><a href=""></a></td>
+                <td><a href="">Ver Itens<a></td>
+            <tr>
         </table>
     </body>
+    <p><a href="mesa.html">Voltar para a lista de mesas</a></p>
 </html>

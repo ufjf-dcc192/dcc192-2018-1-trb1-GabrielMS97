@@ -57,7 +57,6 @@ public class LanchoneteServlet extends HttpServlet {
     private void listarPedidos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int numeroMesa = Integer.parseInt(request.getParameter("numeroMesa"));
         request.setAttribute("numeroMesa", numeroMesa);
-        numeroMesa--;
         List<Mesa> mesa = ListaMesas.getInstance();
         List<Pedido> pedidos = mesa.get(numeroMesa).getPedidos();
         request.setAttribute("pedidos", pedidos);
