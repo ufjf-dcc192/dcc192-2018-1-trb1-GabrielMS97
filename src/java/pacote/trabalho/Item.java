@@ -2,8 +2,8 @@ package pacote.trabalho;
 
 public class Item {
 
-    String nome;
-    Double preco;
+    private String nome;
+    private Double preco;
 
     public Item(String nome, Double preco) {
         this.nome = nome;

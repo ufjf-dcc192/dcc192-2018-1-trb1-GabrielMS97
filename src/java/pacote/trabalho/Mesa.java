@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mesa {
-    Integer numero;
-    List<Pedido> pedidos;
+    private Integer numero;
+    private List<Pedido> pedidos;
     
     public Mesa(Integer numero) {
         this.numero = numero;
