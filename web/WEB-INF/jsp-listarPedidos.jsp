@@ -1,3 +1,5 @@
+<%@page import="pacote.trabalho.Pedido"%>
+<%@page import="pacote.trabalho.ListaPedidos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,20 +10,39 @@
     <body>
         <h1>Pedidos</h1>
         <table border="2">
-            <tr>
-                <th>Número do pedido</th>
-                <th>Valor deste pedido</th>
-                <th>Status do pedido</th>
-                <th>Lista de Itens</th>
-            </tr>
-
-            <tr>
-                <td><a>Pedido </a></td>
-                <td><a>R$ </a></td>
-                <td><a href=""></a></td>
-                <td><a href="">Ver Itens<a></td>
-            <tr>
+            <thead>
+                <tr>
+                    <th>Número do pedido</th>
+                    <th>Mesa</th>
+                    <th>Valor deste pedido</th>
+                    <th>Status do pedido</th>
+                    <th>Aberto em</th>
+                    <th>Fechado em</th>
+                    <th>Ver Itens</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    for (int i = 0; i < ListaPedidos.getInstance().size(); i++) {
+                        Pedido pedido = ListaPedidos.getInstance().get(i);
+                %> 
+                <tr>
+                    <td><a>Pedido </a><%=pedido.getNumPedido()%></td>
+                    <td><a>Mesa </a><%=pedido.getMesa()%></td>
+                    <td><a>R$ </a><%=pedido.getValor()%></td>
+                    <td><a href="fecharPedido.html?codigo=fechado"><%=pedido.getStatus()?"Aberto":"False"%></a></td>
+                    <td><%=pedido.getHoraAbertura()%></td>
+                    <td><%=pedido.getHoraFechamento()%></td>
+                    <td><a href="">Ver Itens<a></td>
+                    <td><a href="excluirPedido.html?linha=<%=i%>">Excluir<a></td>
+                <tr>
+                <%}%>
+                <tr>
+                    <td><a href="">Registrar Pedido</a></td>
+                </tr>
+            </tbody>
         </table>
     </body>
-    <p><a href="mesa.html">Voltar para a lista de mesas</a></p>
+    <p><a href="index.html">Voltar ao início</a></p>
 </html>

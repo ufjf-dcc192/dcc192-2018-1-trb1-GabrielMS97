@@ -10,8 +10,6 @@ public class Mesa {
     public Mesa(Integer numero) {
         this.numero = numero;
         this.pedidos = new ArrayList<>();
-        Pedido ped = new Pedido(0, true);
-        pedidos.add(ped);
     }
 
     public Mesa() {
