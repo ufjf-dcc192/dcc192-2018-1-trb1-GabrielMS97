@@ -28,6 +28,19 @@ public class Pedido {
         String str = fmt.format(data);
         this.horaAbertura = str;
     }
+    
+    public Pedido(Integer numPedido) {
+        this.numPedido = numPedido;
+        this.mesa = mesa;
+        this.status = true;
+        this.valor = 0.0;
+        this.itens = new ArrayList<>();
+        Calendar c = Calendar.getInstance();
+        Date data = c.getTime();
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String str = fmt.format(data);
+        this.horaAbertura = str;
+    }
 
     public Pedido() {
     }

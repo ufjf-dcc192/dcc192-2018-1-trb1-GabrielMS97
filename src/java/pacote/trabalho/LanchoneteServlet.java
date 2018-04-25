@@ -11,53 +11,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html", "/mesa.html", "/excluirMesa.html", "/novaMesa.html", "/listarPedidos.html", "/pedido.html", "/excluirPedido.html"})
+@WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html", 
+    "/listarPedidos.html", "/pedido.html", "/excluirPedido.html", "/novoPedido.html", "/fecharPedido.html"})
 public class LanchoneteServlet extends HttpServlet {
 
-    Integer numMesas = 3;
+    Integer pedido = 3;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if ("/mesa.html".equals(request.getServletPath())) {
-            listarMesas(request, response);
-        } else if ("/excluirMesa.html".equals(request.getServletPath())) {
-            excluirMesas(request, response);
-        } else if ("/novaMesa.html".equals(request.getServletPath())) {
-            criarMesas(request, response);
-        } else if ("/listarPedidos.html".equals(request.getServletPath())) {
+        if ("/listarPedidos.html".equals(request.getServletPath())) {
             listarPedidos(request, response);
         } else if ("/pedido.html".equals(request.getServletPath())) {
             listarPedidos(request, response);
         } else if ("/excluirPedido.html".equals(request.getServletPath())) {
             excluirPedidos(request, response);
+        } else if ("/novoPedido.html".equals(request.getServletPath())) {
+            novoPedido(request, response);
+        }else if ("/fecharPedido.html".equals(request.getServletPath())) {
+            fecharPedido(request, response);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String numero = request.getParameter("numero");
-        Mesa novaMesa = new Mesa(Integer.parseInt(numero));
-        ListaMesas.getInstance().add(novaMesa);
-        response.sendRedirect("mesa.html");
-    }
-
-    private void listarMesas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Mesa> mesas = ListaMesas.getInstance();
-        request.setAttribute("mesas", mesas);
-        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-listarMesas.jsp");
-        despachante.forward(request, response);
-    }
-
-    private void excluirMesas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int linha = Integer.parseInt(request.getParameter("linha"));
-        ListaMesas.getInstance().remove(linha);
-        response.sendRedirect("mesa.html");
-    }
-
-    private void criarMesas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ListaMesas.getInstance().add(new Mesa(++numMesas));
-        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-listarMesas.jsp");
-        despachante.forward(request, response);
+        Pedido novoPedido;
+        novoPedido = new Pedido(++pedido);
+        novoPedido.setMesa(Integer.parseInt(numero));
+        ListaPedidos.getInstance().add(novoPedido);
+        response.sendRedirect("pedido.html");
     }
 
     private void listarPedidos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -73,4 +55,15 @@ public class LanchoneteServlet extends HttpServlet {
         response.sendRedirect("pedido.html");
     }
 
+    private void novoPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //ListaPedidos.getInstance().add(new Pedido(++pedido));
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-criarpedido.jsp");
+        despachante.forward(request, response);
+    }
+    
+    private void fecharPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int codigo = Integer.parseInt(request.getParameter("codigo"));
+        ListaPedidos.getInstance().get(codigo).setStatus(!ListaPedidos.getInstance().get(codigo).getStatus());
+        response.sendRedirect("pedido.html");
+    }
 }

@@ -31,15 +31,15 @@
                     <td><a>Pedido </a><%=pedido.getNumPedido()%></td>
                     <td><a>Mesa </a><%=pedido.getMesa()%></td>
                     <td><a>R$ </a><%=pedido.getValor()%></td>
-                    <td><a href="fecharPedido.html?codigo=fechado"><%=pedido.getStatus()?"Aberto":"False"%></a></td>
+                    <td><a href="fecharPedido.html?codigo=<%=i%>"><%=pedido.getStatus() ? "Aberto" : "Fechado"%></a></td>
                     <td><%=pedido.getHoraAbertura()%></td>
                     <td><%=pedido.getHoraFechamento()%></td>
                     <td><a href="">Ver Itens<a></td>
                     <td><a href="excluirPedido.html?linha=<%=i%>">Excluir<a></td>
-                <tr>
+                </tr>
                 <%}%>
                 <tr>
-                    <td><a href="">Registrar Pedido</a></td>
+                    <td><a href="novoPedido.html">Registrar Pedido</a></td>  
                 </tr>
             </tbody>
         </table>
