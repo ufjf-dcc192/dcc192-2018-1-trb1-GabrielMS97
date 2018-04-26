@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="pacote.trabalho.Pedido"%>
 <%@page import="pacote.trabalho.ListaPedidos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -34,7 +37,7 @@
                     <td><a href="fecharPedido.html?codigo=<%=i%>"><%=pedido.getStatus() ? "Aberto" : "Fechado"%></a></td>
                     <td><%=pedido.getHoraAbertura()%></td>
                     <td><%=pedido.getHoraFechamento()%></td>
-                    <td><a href="">Ver Itens<a></td>
+                    <td><a href="listarItens.html?pedido=<%=pedido.getNumPedido()%>">Ver Itens<a></td>
                     <td><a href="excluirPedido.html?linha=<%=i%>">Excluir<a></td>
                 </tr>
                 <%}%>

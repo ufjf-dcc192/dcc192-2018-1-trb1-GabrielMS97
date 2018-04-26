@@ -28,7 +28,7 @@ public class Pedido {
         String str = fmt.format(data);
         this.horaAbertura = str;
     }
-    
+
     public Pedido(Integer numPedido) {
         this.numPedido = numPedido;
         this.mesa = mesa;
@@ -103,6 +103,14 @@ public class Pedido {
 
     public void setMesa(Integer mesa) {
         this.mesa = mesa;
+    }
+
+    public void horaFechamento() {
+        Calendar c = Calendar.getInstance();
+        Date data = c.getTime();
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String str = fmt.format(data);
+        this.setHoraFechamento(str);
     }
 
 }

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html", 
-    "/listarPedidos.html", "/pedido.html", "/excluirPedido.html", "/novoPedido.html", "/fecharPedido.html"})
+@WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html",
+    "/listarPedidos.html", "/pedido.html", "/excluirPedido.html", "/novoPedido.html", "/fecharPedido.html", "/listarItens.html"})
 public class LanchoneteServlet extends HttpServlet {
 
     Integer pedido = 3;
@@ -27,8 +27,10 @@ public class LanchoneteServlet extends HttpServlet {
             excluirPedidos(request, response);
         } else if ("/novoPedido.html".equals(request.getServletPath())) {
             novoPedido(request, response);
-        }else if ("/fecharPedido.html".equals(request.getServletPath())) {
+        } else if ("/fecharPedido.html".equals(request.getServletPath())) {
             fecharPedido(request, response);
+        } else if ("/listarItens.html".equals(request.getServletPath())) {
+            listarItens(request, response);
         }
     }
 
@@ -60,10 +62,17 @@ public class LanchoneteServlet extends HttpServlet {
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-criarpedido.jsp");
         despachante.forward(request, response);
     }
-    
+
     private void fecharPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int codigo = Integer.parseInt(request.getParameter("codigo"));
         ListaPedidos.getInstance().get(codigo).setStatus(!ListaPedidos.getInstance().get(codigo).getStatus());
         response.sendRedirect("pedido.html");
+    }
+
+    private void listarItens(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Pedido pedido = ListaPedidos.getInstance().get(Integer.parseInt(request.getParameter("pedido")));
+        request.setAttribute("pedido", pedido);
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-listarItens.jsp");
+        despachante.forward(request, response);
     }
 }
