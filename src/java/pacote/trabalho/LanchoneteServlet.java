@@ -36,12 +36,10 @@ public class LanchoneteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String numero = request.getParameter("numero");
-        Pedido novoPedido;
-        novoPedido = new Pedido(++pedido);
-        novoPedido.setMesa(Integer.parseInt(numero));
-        ListaPedidos.getInstance().add(novoPedido);
+        Integer mesa = Integer.parseInt(request.getParameter("mesa"));
+        ListaPedidos.getInstance().add(new Pedido(++pedido, mesa));
         response.sendRedirect("pedido.html");
+
     }
 
     private void listarPedidos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +56,6 @@ public class LanchoneteServlet extends HttpServlet {
     }
 
     private void novoPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //ListaPedidos.getInstance().add(new Pedido(++pedido));
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-criarpedido.jsp");
         despachante.forward(request, response);
     }

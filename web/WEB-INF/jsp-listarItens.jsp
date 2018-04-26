@@ -29,9 +29,10 @@
                 </tr>
                 <%}%>
                 <tr>
-                    <td><a href="pedido.html">Voltar para os pedidos</a></td>  
+                    <td><a href="">Adicionar Item</a></td>  
                 </tr>
             </tbody>
         </table>
+        <p><a href="pedido.html">Voltar para os pedidos</a></p>
     </body>
 </html>
