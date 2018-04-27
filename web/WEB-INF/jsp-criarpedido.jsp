@@ -4,12 +4,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/estilo.css" />
         <title>Novo Pedido</title>
     </head>
     <body>
-        <h1>Novo Pedido</h1>
+        <header>
+            <p id="centro">Novo pedido</p>
+            <nav id="nav">
+                <p id="navp"><a href="index.html">Página Inicial</a> | <a href="pedido.html">Gerenciar Pedidos</a></p>
+            </nav>
+        </header><hr/>
         <form method="post">
-            <label>Número da mesa: <input name="mesa" required="required"/></label><br/>
+            <label id="simples">Número da mesa: <input name="mesa" required="required"/></label><br/>
             <input type="submit"/>
             <input type="reset"/>
         </form>

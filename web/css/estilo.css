@@ -1,0 +1,55 @@
+html{
+    width: 750px;
+    margin: auto
+}
+
+#centro{
+    text-align: left;
+    font-family: sans-serif;
+    background-color: red; 
+    font-size: 34px;
+    height: 70px;
+}
+
+#nav{
+    background-color: yellow;
+    float: left;
+    width:100%;
+    height: 5%;
+    color: white;
+}
+
+#navp{
+    color: black;
+    background-color: yellow;
+    font-size: 20px;
+    text-align: center;
+    font-family: serif;
+}
+
+#simples{
+    color: black;
+    font-size: 20px;
+    text-align: left;
+    font-family: serif;
+}
+
+table{
+    font-family: cursive;
+    border: 5px solid blue;
+    background-color: #B0C4DE;
+}
+
+th{
+    border: 1px solid blue;
+}
+
+td{
+    border: 1px solid blue;
+}
+
+a:link {color: #1E90FF}
+a:visited {color: #1E90FF}
+a:hover {color: #DC143C}
+a:active {color: #DC143C}
+

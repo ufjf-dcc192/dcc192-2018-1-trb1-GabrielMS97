@@ -4,18 +4,25 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/estilo.css" />
         <title>Novo Item</title>
+    <a href="jsp-criarpedido.jsp"></a>
     </head>
     <body>
-        <h1>Novo Item</h1>
+        <header>
+            <p id="centro">Novo Item</p>
+            <nav id="nav">
+                <p id="navp"><a href="index.html">Página Inicial</a> | <a href="pedido.html">Gerenciar Pedidos</a></p>
+            </nav>
+        </header><hr/>
         <form method="post" >
-            <label>Escolha um item:</label>
+            <label id="simples">Escolha um item:</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="item">
                         <%for (int i = 0; i < ItemPedido.getItens().size(); i++) {%>
                         <option value="<%=i%>"><%=i + 1 + " - " + ItemPedido.getItens().get(i).getNome() + " R$ " + ItemPedido.getItens().get(i).getPreco()%></option>
                         <%}%>
                     </select><br/>
-            <label>Determine a quantidade desse item:</label>
+            <label id="simples">Determine a quantidade desse item:</label>
             <input name="quantidade" type="number" class="form-control" placeholder="Quantidade" required="required"><br/>
             <button class="btn btn-primary" type="submit">Concluir</button>
             <br/>

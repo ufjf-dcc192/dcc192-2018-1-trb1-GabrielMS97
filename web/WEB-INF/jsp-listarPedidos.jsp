@@ -8,11 +8,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/estilo.css" />
         <title>Pedidos</title>
     </head>
     <body>
-        <h1>Pedidos</h1>
-        <table border="2">
+        <header>
+            <p id="centro">Pedidos</p>
+            <nav id="nav">
+                <p id="navp"><a href="index.html">Página Inicial</a> | <a href="pedido.html">Gerenciar Pedidos</a></p>
+            </nav>
+        </header><hr/>
+        <table>
             <thead>
                 <tr>
                     <th>Número do pedido</th>
@@ -30,20 +36,17 @@
                         Pedido pedido = ListaPedidos.getInstance().get(i);
                 %> 
                 <tr>
-                    <td><a>Pedido </a><%=pedido.getNumPedido()%></td>
-                    <td><a>Mesa </a><%=pedido.getMesa()%></td>
-                    <td><a>R$ </a><%=pedido.valorFormatado()%></td>
+                    <td>Pedido <%=pedido.getNumPedido()%></td>
+                    <td>Mesa <%=pedido.getMesa()%></td>
+                    <td>R$ <%=pedido.valorFormatado()%></td>
                     <td><a href="fecharPedido.html?codigo=<%=i%>&pedido=<%=pedido.getNumPedido()%>"><%=pedido.getStatus() ? "Aberto" : "Fechado"%></td>
                     <td><%=pedido.getHoraAbertura()%></td>
                     <td><%=pedido.getHoraFechamento()%></td>
                     <td><a href="listarItens.html?pedido=<%=pedido.getNumPedido()%>">Itens<a></td>
                 </tr>
                 <%}%>
-                <tr>
-                    <td><a href="novoPedido.html">Registrar Pedido</a></td>  
-                </tr>
             </tbody>
         </table>
+        <p id="simples"><a href="novoPedido.html">Registrar Pedido</a></p>  
     </body>
-    <p><a href="index.html">Voltar ao início</a></p>
 </html>
