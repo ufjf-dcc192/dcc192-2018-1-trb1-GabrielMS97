@@ -32,8 +32,8 @@
                 <tr>
                     <td><a>Pedido </a><%=pedido.getNumPedido()%></td>
                     <td><a>Mesa </a><%=pedido.getMesa()%></td>
-                    <td><a>R$ </a><%=pedido.getValor()%></td>
-                    <td><a href="fecharPedido.html?codigo=<%=i%>"><%=pedido.getStatus() ? "Aberto" : "Fechado"%></a></td>
+                    <td><a>R$ </a><%=pedido.valorFormatado()%></td>
+                    <td><a href="fecharPedido.html?codigo=<%=i%>&pedido=<%=pedido.getNumPedido()%>"><%=pedido.getStatus() ? "Aberto" : "Fechado"%></td>
                     <td><%=pedido.getHoraAbertura()%></td>
                     <td><%=pedido.getHoraFechamento()%></td>
                     <td><a href="listarItens.html?pedido=<%=pedido.getNumPedido()%>">Itens<a></td>

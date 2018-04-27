@@ -113,4 +113,8 @@ public class Pedido {
         this.setHoraFechamento(str);
     }
 
+    public String valorFormatado() {
+        String valorF = String.format("%.2f", this.valor);
+        return valorF;
+    }
 }

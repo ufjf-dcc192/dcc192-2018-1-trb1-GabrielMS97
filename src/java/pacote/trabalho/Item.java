@@ -39,6 +39,9 @@ public class Item {
         this.quantidade = quantidade;
     }
     
-    
+    public String precoFormatado() {
+        String precoF = String.format("%.2f", this.preco);
+        return precoF;
+    }
 
 }

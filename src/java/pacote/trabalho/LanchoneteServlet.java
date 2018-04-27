@@ -76,7 +76,10 @@ public class LanchoneteServlet extends HttpServlet {
 
     private void fecharPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int codigo = Integer.parseInt(request.getParameter("codigo"));
+        Pedido pedido = ListaPedidos.getInstance().get(Integer.parseInt(request.getParameter("pedido")));
         ListaPedidos.getInstance().get(codigo).setStatus(!ListaPedidos.getInstance().get(codigo).getStatus());
+        pedido.setStatus(false);
+        pedido.horaFechamento();
         response.sendRedirect("pedido.html");
     }
 
