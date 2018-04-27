@@ -12,12 +12,12 @@ public class Pedido {
     private Integer numPedido;
     private Boolean status;
     private Double valor;
-    private List<Item> itens;
+    private List<ItemPedido> itens;
     private String horaAbertura;
     private String horaFechamento = "-";
 
     public Pedido(Integer numPedido, Integer mesa) {
-        this.numPedido = numPedido;
+        this.numPedido = numPedido++;
         this.mesa = mesa;
         this.status = true;
         this.valor = 0.0;
@@ -30,7 +30,7 @@ public class Pedido {
     }
 
     public Pedido(Integer numPedido) {
-        this.numPedido = numPedido;
+        this.numPedido = numPedido++;
         this.mesa = mesa;
         this.status = true;
         this.valor = 0.0;
@@ -58,14 +58,14 @@ public class Pedido {
     }
 
     public void setValor(Double valor) {
-        this.valor = valor;
+        this.valor += valor;
     }
 
-    public List<Item> getItens() {
+    public List<ItemPedido> getItens() {
         return itens;
     }
 
-    public void setItens(List<Item> itens) {
+    public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 public class ListaPedidos {
 
     private static List<Pedido> pedidos;
-    private static int i = 1;
+    private static int i = 0;
 
     public static List<Pedido> getInstance() {
         if (pedidos == null) {

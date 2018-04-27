@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html",
-    "/listarPedidos.html", "/pedido.html", "/excluirPedido.html", "/novoPedido.html", "/fecharPedido.html", "/listarItens.html"})
+    "/listarPedidos.html", "/pedido.html", "/excluirPedido.html", "/novoPedido.html", "/fecharPedido.html", "/listarItens.html", "/adicionarItem.html"})
 public class LanchoneteServlet extends HttpServlet {
 
-    Integer pedido = 3;
+    Integer pedido = 2;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,14 +31,25 @@ public class LanchoneteServlet extends HttpServlet {
             fecharPedido(request, response);
         } else if ("/listarItens.html".equals(request.getServletPath())) {
             listarItens(request, response);
+        } else if ("/adicionarItem.html".equals(request.getServletPath())) {
+            adicionarItem(request, response);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Integer mesa = Integer.parseInt(request.getParameter("mesa"));
-        ListaPedidos.getInstance().add(new Pedido(++pedido, mesa));
-        response.sendRedirect("pedido.html");
+        if ("novoItem".equals(request.getParameter("novoItem"))) {
+            Pedido pedido = ListaPedidos.getInstance().get(Integer.parseInt(request.getParameter("pedido")));
+            int i = Integer.parseInt(request.getParameter("item"));
+            ItemPedido itemPedido = new ItemPedido(ItemPedido.getItens().get(i), Integer.parseInt(request.getParameter("quantidade")));
+            pedido.getItens().add(itemPedido);
+            pedido.setValor(itemPedido.getQtd() * itemPedido.getItem().getPreco());
+            response.sendRedirect("pedido.html");
+        } else {
+            Integer mesa = Integer.parseInt(request.getParameter("mesa"));
+            ListaPedidos.getInstance().add(new Pedido(++pedido, mesa));
+            response.sendRedirect("pedido.html");
+        }
 
     }
 
@@ -70,6 +81,13 @@ public class LanchoneteServlet extends HttpServlet {
         Pedido pedido = ListaPedidos.getInstance().get(Integer.parseInt(request.getParameter("pedido")));
         request.setAttribute("pedido", pedido);
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-listarItens.jsp");
+        despachante.forward(request, response);
+    }
+
+    private void adicionarItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Pedido pedido = ListaPedidos.getInstance().get(Integer.parseInt(request.getParameter("pedido")));
+        request.setAttribute("pedido", pedido);
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/jsp-adicionarItem.jsp");
         despachante.forward(request, response);
     }
 }

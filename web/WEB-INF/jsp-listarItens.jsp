@@ -1,3 +1,4 @@
+<%@page import="pacote.trabalho.ItemPedido"%>
 <%@page import="pacote.trabalho.Item"%>
 <%@page import="pacote.trabalho.Pedido"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,19 +18,21 @@
                 <tr>
                     <th>Item</th>
                     <th>Preço Unitário</th>
+                    <th>Quantidade</th>
                 </tr>
             </thead>
             <tbody>
                 <%
-                    for (Item item : pedido.getItens()) {
+                    for (ItemPedido item : pedido.getItens()) {
                 %> 
                 <tr>
-                    <td><%=item.getNome()%></td>
-                    <td><%=item.getPreco()%></td>
+                    <td><%=item.getItem().getNome()%></td>
+                    <td><%=item.getItem().getPreco()%></td>
+                    <td><%=item.getItem().getQuantidade()%></td>
                 </tr>
                 <%}%>
                 <tr>
-                    <td><a href="">Adicionar Item</a></td>  
+                    <td><a href="adicionarItem.html?pedido=<%=pedido.getNumPedido()%>">Adicionar Item</a></td>  
                 </tr>
             </tbody>
         </table>
