@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html",
-    "/listarPedidos.html", "/pedido.html", "/excluirPedido.html", "/novoPedido.html", "/fecharPedido.html", "/listarItens.html", "/adicionarItem.html"})
+@WebServlet(name = "LanchoneteServlet", urlPatterns = {"/LanchoneteServlet.html", "/listarPedidos.html", "/pedido.html",  
+    "/novoPedido.html", "/fecharPedido.html", "/listarItens.html", "/adicionarItem.html", "/excluirItem.html"})
 public class LanchoneteServlet extends HttpServlet {
 
     Integer pedido = 2;
@@ -23,8 +23,8 @@ public class LanchoneteServlet extends HttpServlet {
             listarPedidos(request, response);
         } else if ("/pedido.html".equals(request.getServletPath())) {
             listarPedidos(request, response);
-        } else if ("/excluirPedido.html".equals(request.getServletPath())) {
-            excluirPedidos(request, response);
+        } else if ("/excluirItem.html".equals(request.getServletPath())) {
+            excluirItens(request, response);
         } else if ("/novoPedido.html".equals(request.getServletPath())) {
             novoPedido(request, response);
         } else if ("/fecharPedido.html".equals(request.getServletPath())) {
@@ -60,9 +60,12 @@ public class LanchoneteServlet extends HttpServlet {
         despachante.forward(request, response);
     }
 
-    private void excluirPedidos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void excluirItens(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int linha = Integer.parseInt(request.getParameter("linha"));
-        ListaPedidos.getInstance().remove(linha);
+        Pedido pedido = ListaPedidos.getInstance().get(Integer.parseInt(request.getParameter("pedido")));
+        ItemPedido item = pedido.getItens().get(linha);
+        pedido.getItens().remove(linha);
+        pedido.setValor(-(item.getQtd() * item.getItem().getPreco()));
         response.sendRedirect("pedido.html");
     }
 

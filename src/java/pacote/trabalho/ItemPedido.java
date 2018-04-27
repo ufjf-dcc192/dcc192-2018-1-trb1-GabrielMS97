@@ -26,7 +26,7 @@ public class ItemPedido {
     
     public ItemPedido(Item item, int quantidade) {
         this.item = item;
-        this.qtd = qtd;
+        this.qtd = quantidade;
     }
     
 

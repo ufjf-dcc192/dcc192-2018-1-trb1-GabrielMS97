@@ -22,7 +22,6 @@
                     <th>Aberto em</th>
                     <th>Fechado em</th>
                     <th>Gerenciar/Ver Itens</th>
-                    <th>Excluir</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +37,6 @@
                     <td><%=pedido.getHoraAbertura()%></td>
                     <td><%=pedido.getHoraFechamento()%></td>
                     <td><a href="listarItens.html?pedido=<%=pedido.getNumPedido()%>">Itens<a></td>
-                    <td><a href="excluirPedido.html?linha=<%=i%>">Excluir<a></td>
                 </tr>
                 <%}%>
                 <tr>
